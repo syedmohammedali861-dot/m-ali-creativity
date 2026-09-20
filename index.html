@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="M. Ali Creativity - ALI Developer Portfolio">
+
+    <meta name="author"
+          content="M. Ali">
+
+    <title>M. Ali Creativity | ALI Developer</title>
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #070b18;
+            --bg2: #0d1328;
+            --card: rgba(255,255,255,0.07);
+            --text: #ffffff;
+            --muted: #aab3c5;
+            --primary: #6c63ff;
+            --secondary: #00d4ff;
+            --success: #00e676;
+            --danger: #ff4d6d;
+            --border: rgba(255,255,255,0.12);
+        }
+
+        body.light {
+            --bg: #f4f7ff;
+            --bg2: #ffffff;
+            --card: rgba(0,0,0,0.06);
+            --text: #101828;
+            --muted: #536071;
+            --border: rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(108,99,255,.25), transparent 25%),
+                radial-gradient(circle at 90% 20%, rgba(0,212,255,.18), transparent 25%),
+                var(--bg);
+
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: .4s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        /* =====================================================
+           PARTICLES
+        ===================================================== */
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: var(--secondary);
+            border-radius: 50%;
+            opacity: .4;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            from {
+                transform: translateY(110vh);
+            }
+
+            to {
+                transform: translateY(-20vh);
+            }
+        }
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(7,11,24,.75);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border);
+
+            z-index: 1000;
+        }
+
+        body.light nav {
+            background: rgba(255,255,255,.8);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-weight: bold;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: .3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .icon-btn:hover {
+            transform: rotate(15deg) scale(1.08);
+            border-color: var(--secondary);
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            padding: 130px 8% 70px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .small-title {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--secondary);
+            background: var(--card);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 90px);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .gradient {
+            background: linear-gradient(
+                90deg,
+                var(--secondary),
+                var(--primary),
+                #ff4ecd
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .typing {
+            font-size: 28px;
+            color: var(--muted);
+            min-height: 40px;
+        }
+
+        .cursor {
+            animation: blink .7s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 25px 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--secondary)
+            );
+
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,212,255,.2);
+        }
+
+        /* =====================================================
+           HERO ORB
+        ===================================================== */
+
+        .hero-art {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orb {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle at 30% 30%,
+                white,
+                var(--secondary) 15%,
+                var(--primary) 50%,
+                #16002d 75%);
+
+            box-shadow:
+                0 0 50px var(--secondary),
+                0 0 120px rgba(108,99,255,.6);
+
+            animation: orbFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat {
+            0%,100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(10deg);
+            }
+        }
+
+        .orbit {
+            position: absolute;
+            width: 360px;
+            height: 160px;
+            border: 2px solid rgba(0,212,255,.5);
+            border-radius: 50%;
+            transform: rotate(-25deg);
+            animation: orbit 8s linear infinite;
+        }
+
+        @keyframes orbit {
+            to {
+                transform: rotate(335deg);
+            }
+        }
+
+        /* =====================================================
+           SECTIONS
+        ===================================================== */
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-card {
+            padding: 35px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 20px;
+        }
+
+        .about-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .about-card p {
+            color: var(--muted);
+            line-height: 1.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+        }
+
+        .stat h3 {
+            font-size: 40px;
+            color: var(--secondary);
+        }
+
+        .stat p {
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        /* =====================================================
+           SKILLS
+        ===================================================== */
+
+        .skills-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .skill {
+            margin-bottom: 25px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .skill-info span:last-child {
+            color: var(--secondary);
+        }
+
+        .skill-bar {
+            height: 12px;
+            border-radius: 20px;
+            background: rgba(255,255,255,.1);
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            width: 0;
+            border-radius: 20px;
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--secondary)
+            );
+
+            transition: width 2s ease;
+        }
+
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .project {
+            padding: 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: .4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project::before {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            filter: blur(80px);
+            opacity: .2;
+            top: -70px;
+            right: -70px;
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+        }
+
+        .project-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .project h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .project p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: rgba(0,212,255,.1);
+            color: var(--secondary);
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           SERVICES
+        ===================================================== */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .service {
+            padding: 35px;
+            text-align: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: .3s;
+        }
+
+        .service:hover {
+            transform: scale(1.03);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .service h3 {
+            margin-bottom: 15px;
+        }
+
+        .service p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        .contact-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .contact-form {
+            padding: 35px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0,0,0,.2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            color: var(--text);
+            font-size: 16px;
+        }
+
+        .input-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            padding: 50px 8%;
+            background: rgba(0,0,0,.25);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: var(--muted);
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .social {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            transition: .3s;
+        }
+
+        .social:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* =====================================================
+           BACK TO TOP
+        ===================================================== */
+
+        #topBtn {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            display: none;
+            z-index: 500;
+            font-size: 20px;
+        }
+
+        #topBtn:hover {
+            transform: translateY(-5px);
+        }
+
+        /* =====================================================
+           NOTIFICATION
+        ===================================================== */
+
+        .notification {
+            position: fixed;
+            right: 25px;
+            top: 95px;
+            padding: 16px 22px;
+            background: #111827;
+            color: white;
+            border: 1px solid var(--secondary);
+            border-radius: 10px;
+            transform: translateX(150%);
+            transition: .4s;
+            z-index: 2000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 1000px) {
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 900px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .projects,
+            .services {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 700px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 75px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 75px);
+
+                background: var(--bg2);
+
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                transition: .4s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero-art {
+                width: 300px;
+                height: 300px;
+            }
+
+            .orb {
+                width: 210px;
+                height: 210px;
+            }
+
+            .orbit {
+                width: 280px;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .projects,
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 35px;
+            }
+        }
+
+        @media(max-width: 450px) {
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .typing {
+                font-size: 21px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         PARTICLES
+    ====================================================== -->
+
+    <div class="particles" id="particles"></div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav>
+
+        <a href="#home" class="logo">
+            M.<span>ALI</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
+            <li>
+                <a href="#skills">Skills</a>
+            </li>
+
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+
+            <li>
+                <a href="#services">Services</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+        </ul>
+
+        <div class="nav-buttons">
+
+            <button
+                class="icon-btn"
+                id="themeBtn"
+                title="Change Theme">
+                🌙
+            </button>
+
+            <button
+                class="icon-btn menu-btn"
+                id="menuBtn">
+                ☰
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                🚀 Welcome to my website
+            </div>
+
+            <h1>
+                M. Ali
+                <br>
+                <span class="gradient">
+                    Creativity
+                </span>
+            </h1>
+
+            <div class="typing">
+                I am a
+                <span id="typingText"></span>
+                <span class="cursor">|</span>
+            </div>
+
+            <p>
+                Welcome to M. Ali Creativity.
+                I create websites, games, software projects
+                and creative digital experiences.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projects"
+                   class="btn btn-primary">
+                    🚀 View Projects
+                </a>
+
+                <a href="#contact"
+                   class="btn btn-outline">
+                    📩 Contact Me
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-art">
+
+            <div class="orbit"></div>
+
+            <div class="orb"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section id="about">
+
+        <div class="section-title">
+
+            <h2>
+                About <span class="gradient">Me</span>
+            </h2>
+
+            <p>
+                A little information about M. Ali Creativity
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-card">
+
+                <h3>
+                    👨‍💻 ALI Developer
+                </h3>
+
+                <p>
+                    I enjoy creating digital projects using
+                    programming, web development and creative
+                    technology.
+                </p>
+
+                <br>
+
+                <p>
+                    My goal is to build useful, beautiful and
+                    interactive software that people can enjoy.
+                </p>
+
+                <br>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="copyEmail()">
+                    📋 Copy Email
+                </button>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <h3>50+</h3>
+
+                    <p>
+                        Projects
+                    </p>
+
+                </div>
+
+                <div class="stat">
+
+                    <h3>10+</h3>
+
+                    <p>
+                        Technologies
+                    </p>
+
+                </div>
+
+                <div class="stat">
+
+                    <h3>100%</h3>
+
+                    <p>
+                        Creativity
+                    </p>
+
+                </div>
+
+                <div class="stat">
+
+                    <h3>24/7</h3>
+
+                    <p>
+                        Ideas
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SKILLS
+    ====================================================== -->
+
+    <section id="skills">
+
+        <div class="section-title">
+
+            <h2>
+                My <span class="gradient">Skills</span>
+            </h2>
+
+            <p>
+                Technologies and tools I work with
+            </p>
+
+        </div>
+
+
+        <div class="skills-container">
+
+            <div class="skill">
+
+                <div class="skill-info">
+                    <span>HTML</span>
+                    <span>95%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div
+                        class="skill-progress"
+                        data-width="95%">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+                    <span>CSS</span>
+                    <span>90%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div
+                        class="skill-progress"
+                        data-width="90%">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+                    <span>JavaScript</span>
+                    <span>85%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div
+                        class="skill-progress"
+                        data-width="85%">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+                    <span>Python</span>
+                    <span>90%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div
+                        class="skill-progress"
+                        data-width="90%">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+                    <span>Game Development</span>
+                    <span>80%</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div
+                        class="skill-progress"
+                        data-width="80%">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PROJECTS
+    ====================================================== -->
+
+    <section id="projects">
+
+        <div class="section-title">
+
+            <h2>
+                My <span class="gradient">Projects</span>
+            </h2>
+
+            <p>
+                Some creative projects
+            </p>
+
+        </div>
+
+
+        <div class="projects">
+
+
+            <div class="project">
+
+                <div class="project-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    Web Development
+                </h3>
+
+                <p>
+                    Modern responsive websites with
+                    animations, navigation and interactive
+                    features.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-icon">
+                    🎮
+                </div>
+
+                <h3>
+                    Game Development
+                </h3>
+
+                <p>
+                    Creative games with controls,
+                    scoring systems, enemies and
+                    interactive gameplay.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Pygame</span>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Projects
+                </h3>
+
+                <p>
+                    Experimental projects combining
+                    programming and artificial intelligence.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">AI</span>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-icon">
+                    🏫
+                </div>
+
+                <h3>
+                    School Management
+                </h3>
+
+                <p>
+                    Student, attendance and admission
+                    management applications.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Tkinter</span>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Desktop Software
+                </h3>
+
+                <p>
+                    Useful desktop applications designed
+                    for everyday tasks.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">GUI</span>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    Future Project
+                </h3>
+
+                <p>
+                    More exciting projects will be
+                    added here in the future.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Coming Soon</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SERVICES
+    ====================================================== -->
+
+    <section id="services">
+
+        <div class="section-title">
+
+            <h2>
+                My <span class="gradient">Services</span>
+            </h2>
+
+            <p>
+                Things I can create
+            </p>
+
+        </div>
+
+
+        <div class="services">
+
+
+            <div class="service">
+
+                <div class="service-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    Website Development
+                </h3>
+
+                <p>
+                    Responsive and modern websites
+                    for different projects.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">
+                    🎮
+                </div>
+
+                <h3>
+                    Game Development
+                </h3>
+
+                <p>
+                    Fun and interactive games
+                    using programming.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">
+                    🖥️
+                </div>
+
+                <h3>
+                    Software Development
+                </h3>
+
+                <p>
+                    Desktop applications and
+                    management systems.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section id="contact">
+
+        <div class="section-title">
+
+            <h2>
+                Contact <span class="gradient">Me</span>
+            </h2>
+
+            <p>
+                Send me a message
+            </p>
+
+        </div>
+
+
+        <div class="contact-container">
+
+            <form
+                class="contact-form"
+                id="contactForm">
+
+                <div class="input-group">
+
+                    <label>
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Write your message..."
+                        required></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    🚀 Send Message
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            M. Ali Creativity
+        </div>
+
+        <p>
+            ALI Developer • Creator • Programmer
+        </p>
+
+
+        <div class="socials">
+
+            <a href="#" class="social">
+                🌐
+            </a>
+
+            <a href="#" class="social">
+                ▶
+            </a>
+
+            <a href="#" class="social">
+                💻
+            </a>
+
+            <a href="#" class="social">
+                📧
+            </a>
+
+        </div>
+
+
+        <p>
+            © <span id="year"></span>
+            M. Ali Creativity.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         BACK TO TOP
+    ====================================================== -->
+
+    <button id="topBtn">
+        ↑
+    </button>
+
+
+    <!-- =====================================================
+         NOTIFICATION
+    ====================================================== -->
+
+    <div
+        class="notification"
+        id="notification">
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* ==============================================
+           PARTICLES
+        ============================================== */
+
+        const particles =
+            document.getElementById("particles");
+
+        for (let i = 0; i < 60; i++) {
+
+            const particle =
+                document.createElement("div");
+
+            particle.className = "particle";
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+            particle.style.animationDuration =
+                (5 + Math.random() * 10) + "s";
+
+            particle.style.animationDelay =
+                Math.random() * 10 + "s";
+
+            particle.style.opacity =
+                Math.random();
+
+            particles.appendChild(particle);
+        }
+
+
+        /* ==============================================
+           TYPING EFFECT
+        ============================================== */
+
+        const words = [
+            "Web Developer",
+            "Python Developer",
+            "Game Developer",
+            "Creative Programmer",
+            "ALI Developer"
+        ];
+
+        let wordIndex = 0;
+        let letterIndex = 0;
+        let deleting = false;
+
+        const typingText =
+            document.getElementById("typingText");
+
+
+        function typeEffect() {
+
+            const word =
+                words[wordIndex];
+
+            if (!deleting) {
+
+                typingText.textContent =
+                    word.substring(
+                        0,
+                        letterIndex + 1
+                    );
+
+                letterIndex++;
+
+                if (letterIndex === word.length) {
+
+                    deleting = true;
+
+                    setTimeout(
+                        typeEffect,
+                        1500
+                    );
+
+                    return;
+                }
+
+            } else {
+
+                typingText.textContent =
+                    word.substring(
+                        0,
+                        letterIndex - 1
+                    );
+
+                letterIndex--;
+
+                if (letterIndex === 0) {
+
+                    deleting = false;
+
+                    wordIndex =
+                        (wordIndex + 1)
+                        % words.length;
+                }
+            }
+
+            setTimeout(
+                typeEffect,
+                deleting ? 50 : 100
+            );
+        }
+
+        typeEffect();
+
+
+        /* ==============================================
+           MOBILE MENU
+        ============================================== */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        menuBtn.addEventListener(
+            "click",
+            () => {
+
+                navLinks.classList.toggle(
+                    "active"
+                );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* ==============================================
+           DARK / LIGHT MODE
+        ============================================== */
+
+        const themeBtn =
+            document.getElementById("themeBtn");
+
+
+        themeBtn.addEventListener(
+            "click",
+            () => {
+
+                document.body.classList.toggle(
+                    "light"
+                );
+
+                if (
+                    document.body.classList.contains(
+                        "light"
+                    )
+                ) {
+
+                    themeBtn.textContent = "☀️";
+
+                } else {
+
+                    themeBtn.textContent = "🌙";
+
+                }
+
+            }
+        );
+
+
+        /* ==============================================
+           SKILL ANIMATION
+        ============================================== */
+
+        const skillBars =
+            document.querySelectorAll(
+                ".skill-progress"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            const width =
+                                entry.target
+                                .getAttribute(
+                                    "data-width"
+                                );
+
+                            entry.target.style.width =
+                                width;
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .5
+                }
+            );
+
+
+        skillBars.forEach(bar => {
+
+            observer.observe(bar);
+
+        });
+
+
+        /* ==============================================
+           BACK TO TOP
+        ============================================== */
+
+        const topBtn =
+            document.getElementById("topBtn");
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (window.scrollY > 500) {
+
+                    topBtn.style.display =
+                        "block";
+
+                } else {
+
+                    topBtn.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        topBtn.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+        /* ==============================================
+           NOTIFICATION
+        ============================================== */
+
+        const notification =
+            document.getElementById(
+                "notification"
+            );
+
+
+        function showNotification(message) {
+
+            notification.textContent =
+                message;
+
+            notification.classList.add(
+                "show"
+            );
+
+            setTimeout(
+                () => {
+
+                    notification.classList.remove(
+                        "show"
+                    );
+
+                },
+                3000
+            );
+        }
+
+
+        /* ==============================================
+           CONTACT FORM
+        ============================================== */
+
+        const contactForm =
+            document.getElementById(
+                "contactForm"
+            );
+
+
+        contactForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                const name =
+                    document.getElementById(
+                        "name"
+                    ).value;
+
+                showNotification(
+                    "Thanks " +
+                    name +
+                    "! Your message has been received."
+                );
+
+                contactForm.reset();
+
+            }
+        );
+
+
+        /* ==============================================
+           COPY EMAIL
+        ============================================== */
+
+        function copyEmail() {
+
+            const email =
+                "your-email@example.com";
+
+            navigator.clipboard
+                .writeText(email)
+                .then(() => {
+
+                    showNotification(
+                        "Email copied!"
+                    );
+
+                });
+
+        }
+
+
+        /* ==============================================
+           CURRENT YEAR
+        ============================================== */
+
+        document.getElementById(
+            "year"
+        ).textContent =
+            new Date().getFullYear();
+
+
+        /* ==============================================
+           REVEAL PROJECTS
+        ============================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".project, .service, .about-card, .stat"
+            );
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.style.opacity =
+                                "1";
+
+                            entry.target.style.transform =
+                                "translateY(0)";
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .15
+                }
+            );
+
+
+        revealElements.forEach(element => {
+
+            element.style.opacity = "0";
+
+            element.style.transform =
+                "translateY(30px)";
+
+            element.style.transition =
+                "opacity .7s ease, transform .7s ease";
+
+            revealObserver.observe(
+                element
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>
