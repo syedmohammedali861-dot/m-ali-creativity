@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NOVA.ALI | Future Starts Here</title>
+
+    <meta name="description"
+          content="NOVA.ALI — A futuristic creative technology website.">
+
+    <style>
+
+        /* ================================
+           GLOBAL
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #050816;
+            --bg2: #0a1025;
+            --card: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --muted: #a8b0c5;
+            --primary: #6c63ff;
+            --secondary: #00e5ff;
+            --border: rgba(255,255,255,0.12);
+        }
+
+        body.light {
+            --bg: #f4f7ff;
+            --bg2: #ffffff;
+            --card: rgba(0,0,0,0.05);
+            --text: #101426;
+            --muted: #555c70;
+            --border: rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(108,99,255,.18), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(0,229,255,.12), transparent 30%),
+                var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: .4s;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* ================================
+           SCROLL BAR
+        ================================= */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(18px);
+            background: rgba(5,8,22,.65);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 9px 16px;
+            border: 1px solid rgba(0,229,255,.3);
+            background: rgba(0,229,255,.08);
+            color: var(--secondary);
+            border-radius: 50px;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 9vw, 115px);
+            line-height: .9;
+            letter-spacing: -5px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg,
+                var(--primary),
+                var(--secondary),
+                #ffffff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 19px;
+            line-height: 1.8;
+            max-width: 650px;
+        }
+
+        .hero-buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            transition: .3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            color: white;
+            background: linear-gradient(90deg,
+                var(--primary),
+                var(--secondary));
+            box-shadow: 0 0 30px rgba(0,229,255,.18);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0,229,255,.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* ================================
+           FLOATING ORBS
+        ================================= */
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            pointer-events: none;
+        }
+
+        .orb.one {
+            width: 300px;
+            height: 300px;
+            right: 5%;
+            top: 20%;
+            background: radial-gradient(circle,
+                rgba(108,99,255,.35),
+                transparent 65%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .orb.two {
+            width: 250px;
+            height: 250px;
+            right: 25%;
+            bottom: 5%;
+            background: radial-gradient(circle,
+                rgba(0,229,255,.25),
+                transparent 65%);
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        /* ================================
+           SECTION
+        ================================= */
+
+        section {
+            padding: 110px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title small {
+            color: var(--secondary);
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(35px, 5vw, 60px);
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            margin-top: 15px;
+        }
+
+        /* ================================
+           SERVICES
+        ================================= */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 35px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            backdrop-filter: blur(15px);
+            transition: .4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0,229,255,.45);
+            box-shadow: 0 20px 60px rgba(0,0,0,.2);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 23px;
+        }
+
+        .card p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ================================
+           STATS
+        ================================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 35px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .stat h3 {
+            font-size: 42px;
+            color: var(--secondary);
+        }
+
+        .stat p {
+            color: var(--muted);
+            margin-top: 7px;
+        }
+
+        /* ================================
+           PROJECTS
+        ================================= */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .project {
+            overflow: hidden;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+
+        .project-image {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            background:
+                linear-gradient(135deg,
+                rgba(108,99,255,.3),
+                rgba(0,229,255,.15));
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ================================
+           ABOUT
+        ================================= */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-box {
+            padding: 40px;
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            background: var(--card);
+        }
+
+        .about-box h3 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .about-box p {
+            color: var(--muted);
+            line-height: 1.9;
+        }
+
+        .skills {
+            margin-top: 30px;
+        }
+
+        .skill {
+            margin-bottom: 20px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .bar {
+            height: 8px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.1);
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg,
+                var(--primary),
+                var(--secondary));
+            border-radius: 10px;
+        }
+
+        /* ================================
+           CONTACT
+        ================================= */
+
+        .contact {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(0,0,0,.15);
+            color: var(--text);
+            outline: none;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            padding: 45px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        footer p {
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        .socials {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .socials a {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            transition: .3s;
+        }
+
+        .socials a:hover {
+            color: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-4px);
+        }
+
+        /* ================================
+           ANIMATION
+        ================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================================
+           RESPONSIVE
+        ================================= */
+
+        @media(max-width:900px) {
+
+            .services,
+            .projects {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media(max-width:700px) {
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                padding: 25px;
+                flex-direction: column;
+                background: var(--bg2);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .services,
+            .projects,
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .contact {
+                padding: 25px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================================
+     NAVIGATION
+================================= -->
+
+<header>
+
+    <div class="container navbar">
+
+        <a href="#home" class="logo">
+            NOVA<span>.ALI</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+
+            <button class="icon-btn" onclick="toggleTheme()">
+                ◐
+            </button>
+
+            <button class="icon-btn menu-btn"
+                    onclick="toggleMenu()">
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     HERO
+================================= -->
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <div class="container">
+
+        <div class="hero-content reveal">
+
+            <div class="badge">
+                ✦ WELCOME TO THE FUTURE
+            </div>
+
+            <h1>
+                N<span>OVA</span>.<br>
+                <span>ALI</span>
+            </h1>
+
+            <p>
+                Welcome to NOVA.ALI — a creative digital universe
+                where technology, design, creativity and innovation
+                come together to build something extraordinary.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projects"
+                   class="btn btn-primary">
+                    Explore Projects →
+                </a>
+
+                <a href="#contact"
+                   class="btn btn-outline">
+                    Contact Me
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     SERVICES
+================================= -->
+
+<section id="services">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>WHAT I DO</small>
+
+            <h2>Creative Services</h2>
+
+            <p>
+                Turning ideas into digital experiences.
+            </p>
+
+        </div>
+
+
+        <div class="services">
+
+            <div class="card reveal">
+
+                <div class="card-icon">💻</div>
+
+                <h3>Web Development</h3>
+
+                <p>
+                    Modern, responsive and interactive websites
+                    built with powerful web technologies.
+                </p>
+
+            </div>
+
+
+            <div class="card reveal">
+
+                <div class="card-icon">🎨</div>
+
+                <h3>Creative Design</h3>
+
+                <p>
+                    Beautiful interfaces, futuristic designs
+                    and unique visual experiences.
+                </p>
+
+            </div>
+
+
+            <div class="card reveal">
+
+                <div class="card-icon">🚀</div>
+
+                <h3>Digital Innovation</h3>
+
+                <p>
+                    New ideas and creative technology solutions
+                    designed to turn concepts into reality.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     STATS
+================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="stats">
+
+            <div class="stat reveal">
+                <h3>50+</h3>
+                <p>Ideas Created</p>
+            </div>
+
+            <div class="stat reveal">
+                <h3>25+</h3>
+                <p>Projects</p>
+            </div>
+
+            <div class="stat reveal">
+                <h3>100%</h3>
+                <p>Creativity</p>
+            </div>
+
+            <div class="stat reveal">
+                <h3>24/7</h3>
+                <p>Innovation</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     PROJECTS
+================================= -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>MY WORK</small>
+
+            <h2>Featured Projects</h2>
+
+            <p>
+                Some things created inside the NOVA universe.
+            </p>
+
+        </div>
+
+
+        <div class="projects">
+
+            <div class="project reveal">
+
+                <div class="project-image">
+                    🌐
+                </div>
+
+                <div class="project-info">
+
+                    <h3>Future Web</h3>
+
+                    <p>
+                        A futuristic responsive website
+                        with interactive elements.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="project reveal">
+
+                <div class="project-image">
+                    🎮
+                </div>
+
+                <div class="project-info">
+
+                    <h3>Game Studio</h3>
+
+                    <p>
+                        A creative gaming concept focused
+                        on exciting digital experiences.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="project reveal">
+
+                <div class="project-image">
+                    🤖
+                </div>
+
+                <div class="project-info">
+
+                    <h3>AI Universe</h3>
+
+                    <p>
+                        An experimental concept exploring
+                        artificial intelligence and creativity.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     ABOUT
+================================= -->
+
+<section id="about">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>ABOUT NOVA.ALI</small>
+
+            <h2>Built For The Future</h2>
+
+        </div>
+
+
+        <div class="about">
+
+            <div class="about-box reveal">
+
+                <h3>Think Different.</h3>
+
+                <p>
+                    NOVA.ALI is a digital creative brand focused
+                    on technology, web development, games,
+                    design and innovative ideas.
+                    The goal is simple:
+                    create things that look amazing,
+                    feel modern and inspire people.
+                </p>
+
+                <br>
+
+                <p>
+                    Every project starts with an idea.
+                    NOVA.ALI turns that idea into something real.
+                </p>
+
+            </div>
+
+
+            <div class="about-box reveal">
+
+                <h3>Skills</h3>
+
+                <div class="skills">
+
+                    <div class="skill">
+
+                        <div class="skill-header">
+                            <span>HTML / CSS</span>
+                            <span>95%</span>
+                        </div>
+
+                        <div class="bar">
+                            <span style="width:95%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-header">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+
+                        <div class="bar">
+                            <span style="width:85%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-header">
+                            <span>Python</span>
+                            <span>90%</span>
+                        </div>
+
+                        <div class="bar">
+                            <span style="width:90%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <div class="skill-header">
+                            <span>Creative Design</span>
+                            <span>92%</span>
+                        </div>
+
+                        <div class="bar">
+                            <span style="width:92%"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     CONTACT
+================================= -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>GET IN TOUCH</small>
+
+            <h2>Let's Create Something</h2>
+
+            <p>
+                Have an idea? Send a message.
+            </p>
+
+        </div>
+
+
+        <div class="contact reveal">
+
+            <form id="contactForm">
+
+                <div class="form-group">
+
+                    <label>Your Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Message</label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Write your message..."
+                        required></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Send Message 🚀
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================================
+     FOOTER
+================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-logo">
+            NOVA<span>.ALI</span>
+        </div>
+
+        <p>
+            © 2026 NOVA.ALI — Create. Explore. Innovate.
+        </p>
+
+        <div class="socials">
+
+            <a href="#" title="Instagram">◎</a>
+            <a href="#" title="YouTube">▶</a>
+            <a href="#" title="GitHub">◉</a>
+            <a href="#" title="Email">✉</a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ================================
+     JAVASCRIPT
+================================= -->
+
+<script>
+
+    /* MOBILE MENU */
+
+    function toggleMenu() {
+
+        const menu = document.getElementById("navLinks");
+
+        menu.classList.toggle("show");
+
+    }
+
+
+    /* DARK / LIGHT MODE */
+
+    function toggleTheme() {
+
+        document.body.classList.toggle("light");
+
+        if(document.body.classList.contains("light")) {
+
+            localStorage.setItem("novaTheme", "light");
+
+        } else {
+
+            localStorage.setItem("novaTheme", "dark");
+
+        }
+
+    }
+
+
+    /* LOAD THEME */
+
+    if(localStorage.getItem("novaTheme") === "light") {
+
+        document.body.classList.add("light");
+
+    }
+
+
+    /* SCROLL ANIMATION */
+
+    function revealElements() {
+
+        const elements =
+            document.querySelectorAll(".reveal");
+
+        elements.forEach(element => {
+
+            const windowHeight =
+                window.innerHeight;
+
+            const elementTop =
+                element.getBoundingClientRect().top;
+
+            if(elementTop < windowHeight - 100) {
+
+                element.classList.add("active");
+
+            }
+
+        });
+
+    }
+
+    window.addEventListener(
+        "scroll",
+        revealElements
+    );
+
+    revealElements();
+
+
+    /* CONTACT FORM */
+
+    document.getElementById("contactForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value;
+
+            alert(
+                "Thank you, " +
+                name +
+                "! 🚀 Your message has been received."
+            );
+
+            this.reset();
+
+        });
+
+
+    /* CLOSE MOBILE MENU AFTER CLICK */
+
+    document.querySelectorAll(".nav-links a")
+        .forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                document
+                    .getElementById("navLinks")
+                    .classList.remove("show");
+
+            });
+
+        });
+
+</script>
+
+</body>
+</html>
